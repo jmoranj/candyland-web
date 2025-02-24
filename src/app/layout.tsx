@@ -1,3 +1,4 @@
+import SideBar from '@/components/Sidebar/SideBar'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
@@ -23,7 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={luckyBones.variable}>
       <body className={`${luckyBones.variable} antialiased font-sans`}>
-        {children}
+        <div className="flex">
+          <SideBar />
+          <main className="flex-1 transition-all duration-300 md:ml-64">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   )

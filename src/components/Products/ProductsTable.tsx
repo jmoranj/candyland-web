@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { Product, ProductSchema } from '@/interfaces/Product'
+import { useEffect, useState } from 'react'
 import ProductCard from './ProductCard'
 
 // Rest of the component remains the same
@@ -15,7 +15,7 @@ const mockProductService = {
         price: 29.99,
         category: 'Cake',
         description: 'Rich chocolate cake with ganache',
-        imageUrl: '/cakes/chocolate.jpg',
+        imageUrl: '',
       },
       {
         id: '2',
@@ -23,7 +23,7 @@ const mockProductService = {
         price: 34.5,
         category: 'Cake',
         description: 'Fresh strawberry cream cake',
-        imageUrl: '/cakes/strawberry.jpg',
+        imageUrl: '',
       },
       {
         id: '3',
@@ -31,7 +31,7 @@ const mockProductService = {
         price: 34.5,
         category: 'Cake',
         description: 'Fresh strawberry cream cake',
-        imageUrl: '/cakes/strawberry.jpg',
+        imageUrl: '',
       },
     ]
 
@@ -40,7 +40,7 @@ const mockProductService = {
   },
 }
 
-export default function CandysTable() {
+export default function ProductsTable() {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)

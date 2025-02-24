@@ -1,7 +1,7 @@
 'use client'
 
-import Image from 'next/image'
 import { Product } from '@/interfaces/Product'
+import Image from 'next/image'
 
 interface ProductCardProps {
   product: Product
@@ -12,10 +12,10 @@ export default function ProductCard({ product }: ProductCardProps) {
     <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl shadow-red-300">
       <div className="relative h-64 w-full">
         <Image
-          src={product.imageUrl || './public/logo.jpg'}
+          src={'/cake.jpg'}
           alt={product.name}
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: 'cover' }}
           className="hover:opacity-90 transition-opacity"
         />
       </div>
