@@ -1,4 +1,4 @@
-import SideBar from '@/components/Sidebar/SideBar'
+import SideBar from '@/components/sidebar/SideBar'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
