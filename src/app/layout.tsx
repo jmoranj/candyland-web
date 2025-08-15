@@ -4,7 +4,7 @@ import localFont from 'next/font/local'
 import './globals.css'
 
 const luckyBones = localFont({
-  src: './fonts/LuckyBones-Bold.otf',
+  src: './assets/fonts/LuckyBones-Bold.otf',
   variable: '--font-lucky-bones',
   weight: '700',
   style: 'normal',
