@@ -6,7 +6,7 @@ export default function ContactInfo() {
     <>
       <div className="flex flex-col">
         <div className="flex justify-center">
-          <Image src={cake} alt="Cake" className="w-50 h-50 rounded-full" />
+          <Image src={cake} alt="Cake" className="w-20 h-20 rounded-full" />
         </div>
         <h1 className="text-black">Agatha Monique</h1>
       </div>

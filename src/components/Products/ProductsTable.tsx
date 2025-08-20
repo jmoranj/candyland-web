@@ -1,13 +1,13 @@
 'use client'
 
-import { Product, ProductSchema } from '@/interfaces/Product'
+import { ProductSchema, ProductType } from '@/schemas/Product'
 import { useEffect, useState } from 'react'
 import ProductCard from './ProductCard'
 
 // Rest of the component remains the same
 
 const mockProductService = {
-  getProducts: (): Product[] => {
+  getProducts: (): ProductType[] => {
     const products = [
       {
         id: '1',
@@ -41,7 +41,7 @@ const mockProductService = {
 }
 
 export default function ProductsTable() {
-  const [products, setProducts] = useState<Product[]>([])
+  const [products, setProducts] = useState<ProductType[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -60,7 +60,7 @@ export default function ProductsTable() {
             return null
           }
         })
-        .filter(Boolean) as Product[]
+        .filter(Boolean) as ProductType[]
 
       setProducts(validatedProducts)
       setLoading(false)

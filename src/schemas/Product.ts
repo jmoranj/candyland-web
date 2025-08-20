@@ -9,4 +9,4 @@ export const ProductSchema = z.object({
   imageUrl: z.string().optional(),
 })
 
-export type Product = z.infer<typeof ProductSchema>
+export type ProductType = z.infer<typeof ProductSchema>
