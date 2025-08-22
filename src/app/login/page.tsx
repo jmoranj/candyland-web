@@ -1,38 +1,38 @@
-"use client";
-import { useState } from "react";
+'use client'
+import { useState } from 'react'
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
+    e.preventDefault()
+    setLoading(true)
+    setError(null)
 
     try {
-      const response = await fetch("http://localhost:4000/auth/login", {
-        method: "POST",
+      const response = await fetch('http://localhost:4000/auth/login', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
-      });
+      })
 
       if (!response.ok) {
-        throw new Error("Login failed");
+        throw new Error('Login failed')
       }
 
-      const data = await response.json();
-      console.log("Login successful:", data);
-    } catch (err: any) {
-      setError(err.message);
+      const data = await response.json()
+      console.log('Login successful:', data)
+    } catch (error) {
+      console.error('Login failed:', error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-pink-50">
@@ -76,9 +76,9 @@ export default function LoginPage() {
           disabled={loading}
           onClick={handleSubmit}
         >
-          {loading ? "Carregando..." : "Entrar"}
+          {loading ? 'Carregando...' : 'Entrar'}
         </button>
       </div>
     </div>
-  );
+  )
 }
