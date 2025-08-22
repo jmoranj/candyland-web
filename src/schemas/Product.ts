@@ -1,12 +1,13 @@
 import { z } from 'zod'
 
-export const ProductSchema = z.object({
-  id: z.string().or(z.number()),
+export const BaseProductSchema = z.object({
+  id: z.string(),
   name: z.string(),
-  price: z.number().positive(),
+  price: z.string(),
   category: z.string(),
+  quantity: z.number().positive().default(1),
   description: z.string().optional(),
   imageUrl: z.string().optional(),
 })
 
-export type ProductType = z.infer<typeof ProductSchema>
+export type ProductType = z.infer<typeof BaseProductSchema>
