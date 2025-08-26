@@ -1,5 +1,6 @@
 import ProductsTable from '@/components/Products/ProductsTable'
 
+
 export default function Home() {
   return (
     <div className="flex min-h-screen">
