@@ -28,7 +28,3 @@ Ele permite que os clientes naveguem pelos produtos de forma simples e intuitiva
 - **Next.js** – Framework React para construção do frontend e dashboard.
 - **TypeScript** – Tipagem estática para maior segurança e escalabilidade.
 - **Tailwind CSS** – Estilização responsiva e otimizada.
-
----
-
-## 📂 Estrutura do Projeto
