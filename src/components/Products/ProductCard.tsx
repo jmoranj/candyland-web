@@ -3,17 +3,17 @@
 import { OrderContext } from '@/context/OrderContext'
 import { ProductType } from '@/schemas/Product'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useContext } from 'react'
 
 export default function ProductCard({ product }: { product: ProductType }) {
   const { addItem } = useContext(OrderContext)
 
-  // const handleClick = () => {
-  //   window.location.href = `/product/${product.id}`
-  // }
-
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-300 shadow-gray-50">
+    <Link
+      href={`/${product.id}`}
+      className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-300 shadow-gray-50"
+    >
       <div className="relative h-64 w-full">
         <Image
           src={'/cake.jpg'}
@@ -40,6 +40,6 @@ export default function ProductCard({ product }: { product: ProductType }) {
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
