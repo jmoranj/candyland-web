@@ -1,3 +1,3 @@
-export function api(endpoint: string) {
-  return fetch(`${process.env.API_URL}${endpoint}`)
+export function ApiUrl() {
+  return process.env.API_URL || 'http://localhost:4000'
 }
