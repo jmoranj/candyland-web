@@ -1,4 +1,4 @@
-import { ApiUrl } from '@/Api/Api'
+import { ApiUrl } from '@/api/Api'
 import { ProductType } from '@/schemas/Product'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import axios from 'axios'

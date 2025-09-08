@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 export default {
   content: [
@@ -12,6 +12,10 @@ export default {
         ouro: '#e8c76b',
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        pinkStrong: 'var(--pinkStrong)',
+        pinkWeak: 'var(--pinkWeak)',
+        brownText: 'var(--brownText)',
+        brownPlaceholder: 'var(--brownPlaceholder)',
       },
       fontFamily: {
         candyland: ['var(--font-lucky-bones)', 'system-ui', 'sans-serif'],
@@ -23,4 +27,4 @@ export default {
     },
   },
   plugins: [],
-} satisfies Config
+} satisfies Config;

@@ -1,15 +1,15 @@
-import { IconProps } from '../IconProps'
+import { IconProps } from '../IconProps';
 
 export default function BagIcon({
   className = '',
-  width = 24,
-  height = 24,
+  width,
+  height,
   color = 'currentColor',
 }: IconProps) {
   return (
     <svg
-      width={width}
-      height={height}
+      width={width || '100%'}
+      height={height || '100%'}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
@@ -18,6 +18,7 @@ export default function BagIcon({
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      preserveAspectRatio="xMidYMid meet"
     >
       {/* Bag body */}
       <rect x="4" y="9" width="16" height="11" rx="2" />
@@ -27,5 +28,5 @@ export default function BagIcon({
       <circle cx="9" cy="12" r="1" />
       <circle cx="15" cy="12" r="1" />
     </svg>
-  )
+  );
 }
