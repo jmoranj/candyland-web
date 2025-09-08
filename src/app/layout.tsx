@@ -1,5 +1,4 @@
 import QueryProvider from '@/Providers/QueryProvider';
-import Header from '@/components/Header/Header';
 import OrderProvider from '@/context/OrderContext';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
@@ -30,12 +29,8 @@ export default function RootLayout({
       >
         <QueryProvider>
           <OrderProvider>
-            <div className="w-screen h-screen">
-              <div className="flex justify-center">
-                <header className="w-[90%] justify-center">
-                  <Header />
-                </header>
-              </div>
+            <div className="w-screen h-screen flex justify-center">
+              {children}
             </div>
           </OrderProvider>
         </QueryProvider>

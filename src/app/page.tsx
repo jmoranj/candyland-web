@@ -1,16 +1,15 @@
-'use client'
-
-import ProductsTable from '@/components/Products/ProductsTable'
-import { Suspense } from 'react'
+import Categories from '@/components/Categories/Categories';
+import Header from '@/components/Header/Header';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen">
-      <main className="flex-1 p-4 bg-white">
-        <Suspense fallback={<div>Loading...</div>}>
-          <ProductsTable />
-        </Suspense>
+    <main className="w-[90%] h-full flex flex-col items-center pt-10 gap-10">
+      <header className="w-full justify-center items-center">
+        <Header />
+      </header>
+      <main className="w-full ">
+        <Categories />
       </main>
-    </div>
-  )
+    </main>
+  );
 }
