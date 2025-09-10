@@ -3,6 +3,7 @@
 import ProductsTable from '@/components/Products/ProductsTable'
 import { Suspense } from 'react'
 
+
 export default function Home() {
   return (
     <div className="flex min-h-screen">
