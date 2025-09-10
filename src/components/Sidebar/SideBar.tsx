@@ -1,12 +1,17 @@
 'use client'
+import { OrderContext } from '@/context/OrderContext'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import BagIcon from '../icons/sidebar/bagIcon'
+import CandyCaneIcon from '../icons/sidebar/candyCaneIcon'
+import ProfileIcon from '../icons/sidebar/profileIcon'
 
 export default function SideBar() {
   const pathname = usePathname()
   const [isSidebarHidden, setIsSidebarHidden] = useState(false)
+  const { order } = useContext(OrderContext)
 
   const isActive = (href: string) => pathname === href
 
@@ -46,23 +51,40 @@ export default function SideBar() {
         </div>
 
         <nav className="mt-6">
-          <ul className="space-y-2">
+          <ul className="text-2xl">
             <li>
               <Link
                 href="/"
-                className={`font-candyland font-candyland-bold text-xl rounded flex items-center px-4 py-2 text-pink-800 hover:bg-pink-100 transition-colors
+                className={`font-candyland font-candyland-bold rounded flex items-center gap-2 px-4 py-4 text-pink-800 hover:bg-pink-100 transition-colors
                   ${isActive('/') ? 'bg-pink-200 text-pink-900' : 'text-pink-800 hover:bg-pink-100'}`}
               >
-                Cakes
+                <CandyCaneIcon />
+                <span>Doces</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/pedidos"
+                className={`font-candyland rounded flex items-center px-4 py-4 gap-2 text-pink-800 hover:bg-pink-100 transition-colors relative
+                  ${isActive('/cart') ? 'bg-pink-200 text-pink-900' : 'text-pink-800 hover:bg-pink-100'}`}
+              >
+                <BagIcon />
+                <span>Pedidos</span>
+                {order.products.length > 0 && (
+                  <span className="absolute -top-1 left-8 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {order.products.length}
+                  </span>
+                )}
               </Link>
             </li>
             <li>
               <Link
                 href="/contact"
-                className={`font-candyland font-candyland-bold text-xl rounded flex items-center px-4 py-2 text-pink-800 hover:bg-pink-100 transition-colors
+                className={`font-candyland font-candyland-bold rounded flex items-center px-4 py-4 gap-2 text-pink-800 hover:bg-pink-100 transition-colors
                   ${isActive('/contact') ? 'bg-pink-200 text-pink-900' : 'text-pink-800 hover:bg-pink-100'}`}
               >
-                Contato
+                <ProfileIcon />
+                <span>Contato</span>
               </Link>
             </li>
           </ul>

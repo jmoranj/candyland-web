@@ -1,18 +1,19 @@
 'use client'
 
+import { OrderContext } from '@/context/OrderContext'
 import { ProductType } from '@/schemas/Product'
 import Image from 'next/image'
+import { useContext } from 'react'
 
 export default function ProductCard({ product }: { product: ProductType }) {
-  const handleClick = () => {
-    window.location.href = `/product/${product.id}`
-  }
+  const { addItem } = useContext(OrderContext)
+
+  // const handleClick = () => {
+  //   window.location.href = `/product/${product.id}`
+  // }
 
   return (
-    <div
-      onClick={handleClick}
-      className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-300 shadow-gray-50"
-    >
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-300 shadow-gray-50">
       <div className="relative h-64 w-full">
         <Image
           src={'/cake.jpg'}
@@ -29,9 +30,12 @@ export default function ProductCard({ product }: { product: ProductType }) {
         <p className="text-gray-600 mb-4">{product?.description}</p>
         <div className="flex justify-between items-center">
           <span className="text-2xl font-bold text-pink-700">
-            R$ {product?.price.toFixed(2)}
+            R$ {product?.price}
           </span>
-          <button className="bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 transition-colors">
+          <button
+            onClick={() => addItem(product)}
+            className="bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 transition-colors"
+          >
             Add to Cart
           </button>
         </div>

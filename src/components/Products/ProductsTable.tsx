@@ -1,6 +1,6 @@
 'use client'
 
-import { ProductSchema, ProductType } from '@/schemas/Product'
+import { BaseProductSchema, ProductType } from '@/schemas/Product'
 import { useEffect, useState } from 'react'
 import ProductCard from './ProductCard'
 
@@ -12,7 +12,7 @@ const mockProductService = {
       {
         id: '1',
         name: 'Chocolate Cake',
-        price: 29.99,
+        price: '29.99',
         category: 'Cake',
         description: 'Rich chocolate cake with ganache',
         imageUrl: '',
@@ -20,7 +20,7 @@ const mockProductService = {
       {
         id: '2',
         name: 'Strawberry Delight',
-        price: 34.5,
+        price: '34.5',
         category: 'Cake',
         description: 'Fresh strawberry cream cake',
         imageUrl: '',
@@ -28,7 +28,7 @@ const mockProductService = {
       {
         id: '3',
         name: 'Strawberry Delight',
-        price: 34.5,
+        price: '34.5',
         category: 'Cake',
         description: 'Fresh strawberry cream cake',
         imageUrl: '',
@@ -36,7 +36,7 @@ const mockProductService = {
     ]
 
     // Validate each product against the schema
-    return products.map((product) => ProductSchema.parse(product))
+    return products.map((product) => BaseProductSchema.parse(product))
   },
 }
 
@@ -54,7 +54,7 @@ export default function ProductsTable() {
       const validatedProducts = fetchedProducts
         .map((product) => {
           try {
-            return ProductSchema.parse(product)
+            return BaseProductSchema.parse(product)
           } catch (validationError) {
             console.error('Product validation error', validationError)
             return null
