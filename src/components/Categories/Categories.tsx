@@ -6,6 +6,7 @@ import CategoryTemplate from './CategorieTemplate';
 
 export default function Categories() {
   const { data: categories } = useCategoriesQuery();
+  console.log(categories);
   return (
     <div className="w-full flex flex-col gap-6">
       <div className="font-candyland 2xl:text-2xl text-xl max-sm:text-base">
@@ -14,12 +15,12 @@ export default function Categories() {
       <div className="w-full flex max-sm:justify-around gap-6 flex-wrap">
         {categories.map(
           (
-            category: { categoryTitle: string; categoryIcon: string },
+            category: { categoryName: string; categoryIcon: string },
             index: Key | null | undefined,
           ) => (
             <CategoryTemplate
               key={index}
-              name={category.categoryTitle}
+              name={category.categoryName}
               icon={category.categoryIcon}
             />
           ),
