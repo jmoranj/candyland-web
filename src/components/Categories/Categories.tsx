@@ -12,7 +12,7 @@ export default function Categories() {
       <div className="font-candyland 2xl:text-2xl text-xl max-sm:text-base">
         Categorias
       </div>
-      <div className="w-full flex max-sm:justify-around gap-6 flex-wrap">
+      <div className="w-full flex gap-6 overflow-x-auto">
         {categories.map(
           (
             category: { categoryName: string; categoryIcon: string },

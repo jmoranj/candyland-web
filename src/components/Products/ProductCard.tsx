@@ -2,44 +2,35 @@
 
 import { OrderContext } from '@/context/OrderContext'
 import { ProductType } from '@/schemas/Product'
-import Image from 'next/image'
-import Link from 'next/link'
 import { useContext } from 'react'
+import BagIcon from '../icons/sidebar/bagIcon'
 
 export default function ProductCard({ product }: { product: ProductType }) {
   const { addItem } = useContext(OrderContext)
 
   return (
-    <Link
-      href={`/${product.id}`}
-      className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-300 shadow-gray-50"
-    >
-      <div className="relative h-64 w-full">
-        <Image
-          src={'/cake.jpg'}
-          alt={product?.name}
-          fill
-          style={{ objectFit: 'cover' }}
-          className="hover:opacity-90 transition-opacity"
+    <div className="flex max-w-md max-sm:border-b border-pinkStrong pb-4 mb-4">
+      <div className="w-40 h-full max-sm:w-32">
+        <img
+          src={"./cake.jpg"}
+          alt={product.name}
+          className="w-full h-full object-cover"
         />
       </div>
-      <div className="p-6">
-        <h3 className="text-xl font-semibold text-pink-900 mb-2">
-          {product?.name}
-        </h3>
-        <p className="text-gray-600 mb-4">{product?.description}</p>
-        <div className="flex justify-between items-center">
-          <span className="text-2xl font-bold text-pink-700">
-            R$ {product?.price}
-          </span>
-          <button
-            onClick={() => addItem(product)}
-            className="bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 transition-colors"
-          >
-            Add to Cart
-          </button>
+      <div className="flex flex-col justify-between px-5 flex-1">
+        <div className='flex flex-col gap-1'>
+          <h3 className="text-xl max-sm:text-base font-semibold text-pinkStrong">{product.name}</h3>
+          <p className="text-base max-sm:text-sm mt-2">{product.description}</p>
         </div>
+        <span className="text-xl max-sm:text-base font-semibold text-pinkStrong">R${Number(product.price).toFixed(2)}</span>
+        <button
+          onClick={() => { addItem }}
+          className="flex justify-center items-center gap-2 px-10 py-2 bg-pinkStrong text-base max-sm:text-sm text-white font-semibold rounded hover:opacity-65 transition w-max"
+        >
+          <BagIcon width={20} height={20} />
+          Adicionar
+        </button>
       </div>
-    </Link>
-  )
+    </div>
+  );
 }
