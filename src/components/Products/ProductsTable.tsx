@@ -20,7 +20,7 @@ export default function ProductsTable() {
     <div className='w-full my-20'>
       {Object.entries(groupedByCategory).map(([category, products]) => (
         <div key={category} className='mb-10 flex flex-col gap-5'>
-          <h2 className='text-2xl font-bold mb-4 capitalize'>{category}</h2>
+          <h2 className='font-candyland 2xl:text-2xl text-xl max-sm:text-lg capitalize'>{category}</h2>
           <div className="flex justify-between gap-6 flex-wrap ">
             {products.map(product => (
               <ProductCard key={product.id} product={product} />

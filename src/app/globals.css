@@ -21,3 +21,13 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* classes customizadas para esconder scrollbar */
+.scrollbarNone {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE e Edge antigos */
+}
+
+.scrollbarNone::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
