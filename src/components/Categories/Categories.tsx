@@ -1,30 +1,18 @@
 'use client';
 
-import api from '@/api/Api';
-import { useQuery } from '@tanstack/react-query';
+import { useCategoriesQuery } from '@/services/CategoryService';
 import { Key } from 'react';
 import CategoryTemplate from './CategorieTemplate';
 
 export default function Categories() {
-  const categories = useQuery({
-    queryKey: ['categories'],
-    queryFn: async () => {
-      const res = await api.get('/category');
-      return res.data;
-    },
-  });
-
-  if (categories.isLoading) {
-    return <div>Carregando Categorias...</div>;
-  }
-
+  const { data: categories } = useCategoriesQuery();
   return (
     <div className="w-full flex flex-col gap-6">
       <div className="font-candyland 2xl:text-2xl text-xl max-sm:text-base">
         Categorias
       </div>
       <div className="w-full flex max-sm:justify-around gap-6 flex-wrap">
-        {categories.data.map(
+        {categories.map(
           (
             category: { categoryTitle: string; categoryIcon: string },
             index: Key | null | undefined,

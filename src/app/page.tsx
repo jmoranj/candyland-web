@@ -1,6 +1,7 @@
 import Categories from '@/components/Categories/Categories';
 import Header from '@/components/Header/Header';
 import ProductsTable from '@/components/Products/ProductsTable';
+import { Suspense } from 'react';
 
 export default function Home() {
   return (
@@ -9,8 +10,12 @@ export default function Home() {
         <Header />
       </header>
       <main className="w-full ">
-        <Categories />
-        <ProductsTable />
+        <Suspense fallback={<div>Carregando Categorias</div>}>
+          <Categories />
+        </Suspense>
+        <Suspense fallback={<div>Carregando Produtos</div>}>
+          <ProductsTable />
+        </Suspense>
       </main>
     </div>
   );
