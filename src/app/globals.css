@@ -8,12 +8,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground: #ededed;
+    --foreground: #faf9f6;
+    --pinkStrong: #f86b86;
+    --brownText: #694009;
+    --brownPlaceholder: #69400970;
+    --pinkWeak: #ff617b25;
   }
 }
 
 body {
-  color: var(--foreground);
+  color: var(--brownText);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }

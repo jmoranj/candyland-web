@@ -1,21 +1,21 @@
-import SideBar from '@/components/Sidebar/SideBar'
-import OrderProvider from '@/context/OrderContext'
+import QueryProvider from '@/Providers/QueryProvider';
+import OrderProvider from '@/context/OrderContext';
 import { ToastProvider } from "@/components/Ui/ToastProvider";
-import type { Metadata } from 'next'
-import localFont from 'next/font/local'
-import './globals.css'
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
+import './globals.css';
 
 const luckyBones = localFont({
-  src: "./assets/fonts/LuckyBones-Bold.otf",
-  variable: "--font-lucky-bones",
-  weight: "700",
-  style: "normal",
-  display: "swap",
+  src: './assets/fonts/LuckyBones-Bold.otf',
+  variable: '--font-lucky-bones',
+  weight: '700',
+  style: 'normal',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "Candyland",
-  description: "Thought and Code by @jmorangus",
+  title: 'Candyland',
+  description: 'Thought and coded by sons of @jmoranj',
 };
 
 export default function RootLayout({
@@ -24,17 +24,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={luckyBones.variable}>
-      <body className={`${luckyBones.variable} antialiased font-sans`}>
+    <html lang="pt-br" className={luckyBones.variable}>
+      <body
+        className={`${luckyBones.variable} antialiased font-sans bg-foreground`}
+      >
+        <QueryProvider>
         <ToastProvider />
-        <OrderProvider>
-          <div className="flex">
-            <SideBar />
-            <main className="flex-1 transition-all duration-300 md:ml-64">
+          <OrderProvider>
+            <div className="w-screen h-screen flex justify-center">
               {children}
-            </main>
-          </div>
-        </OrderProvider>
+            </div>
+          </OrderProvider>
+        </QueryProvider>
       </body>
     </html>
   );

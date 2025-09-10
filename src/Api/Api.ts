@@ -1,3 +1,10 @@
-export function api(endpoint: string) {
-  return fetch(`${process.env.API_URL}${endpoint}`)
-}
+import axios from 'axios';
+
+const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000',
+  timeout: 20000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+export default api;
