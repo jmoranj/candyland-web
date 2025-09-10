@@ -1,5 +1,6 @@
 import QueryProvider from '@/Providers/QueryProvider';
 import OrderProvider from '@/context/OrderContext';
+import { ToastProvider } from "@/components/Ui/ToastProvider";
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
@@ -14,7 +15,7 @@ const luckyBones = localFont({
 
 export const metadata: Metadata = {
   title: 'Candyland',
-  description: 'Thought and Code by @jmorangus',
+  description: 'Thought and coded by sons of @jmoranj',
 };
 
 export default function RootLayout({
@@ -28,6 +29,7 @@ export default function RootLayout({
         className={`${luckyBones.variable} antialiased font-sans bg-foreground`}
       >
         <QueryProvider>
+        <ToastProvider />
           <OrderProvider>
             <div className="w-screen h-screen flex justify-center">
               {children}

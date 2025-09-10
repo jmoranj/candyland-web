@@ -3,6 +3,7 @@ import Header from '@/components/Header/Header';
 import ProductsTable from '@/components/Products/ProductsTable';
 import { Suspense } from 'react';
 
+
 export default function Home() {
   return (
     <div className="w-[90%] h-full flex flex-col items-center pt-10 gap-10">
