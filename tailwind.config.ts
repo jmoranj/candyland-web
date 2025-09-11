@@ -13,6 +13,7 @@ export default {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         pinkStrong: 'var(--pinkStrong)',
+        pinkStrongHover: 'var(--pinkStrongHover)',
         pinkWeak: 'var(--pinkWeak)',
         brownText: 'var(--brownText)',
         brownPlaceholder: 'var(--brownPlaceholder)',

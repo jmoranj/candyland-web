@@ -1,9 +1,12 @@
+import Link from 'next/link';
 import CartIcon from '../icons/header/CartIcon';
 
 export default function CartButton() {
   return (
     <figure className="bg-pinkStrong w-10 max-sm:w-7 h-full p-2 max-sm:p-1.5 rounded-xl max-sm:rounded-lg ml-4 text-white">
-      <CartIcon />
+      <Link href="/pedidos">
+        <CartIcon />
+      </Link>
     </figure>
   );
 }

@@ -60,7 +60,7 @@ export default function CartPage() {
     <div className="min-h-screen p-6 bg-gray-50 flex items-center justify-center">
       <div className="max-w-5xl w-full">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-candyland text-pink-800 mb-4">
+          <h1 className="text-4xl font-candyland text-pinkStrong mb-4">
             Meu Carrinho
           </h1>
           <div className="flex justify-center">
@@ -74,9 +74,9 @@ export default function CartPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div className="p-6">
-            <div className="space-y-4">
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div className="p-6 max-sm:p-3">
+            <div className="space-y-4 overflow-x-auto max-h-96 max-sm:max-h-80 scrollbarNone sm:p-5">
               {order.products.map((product) => {
                 const isExpanded = expandedItems.has(product.id)
                 return (
@@ -100,7 +100,7 @@ export default function CartPage() {
                       </div>
 
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-gray-800">
+                        <h3 className="text-lg max-sm:text-sm font-semibold text-gray-800">
                           {product.name}
                         </h3>
                       </div>
@@ -129,10 +129,9 @@ export default function CartPage() {
                     {/* Conteúdo Expansível */}
                     <div
                       className={`transition-all duration-300 overflow-hidden 
-                        ${
-                          isExpanded
-                            ? 'max-h-96 opacity-100'
-                            : 'max-h-0 opacity-0'
+                        ${isExpanded
+                          ? 'max-h-96 opacity-100'
+                          : 'max-h-0 opacity-0'
                         }`}
                     >
                       <div className="p-4 bg-white border-t">
@@ -164,7 +163,7 @@ export default function CartPage() {
                                       −
                                     </button>
 
-                                    <span>{product.quantity}</span>
+                                    <span>{product.quantity == undefined ? product.quantity = 1 : product.quantity}</span>
 
                                     <button
                                       onClick={(e) => {
@@ -182,7 +181,7 @@ export default function CartPage() {
 
                               <div className="flex justify-between border-t pt-2">
                                 <span className="font-semibold">Subtotal:</span>
-                                <span className="font-bold text-pink-700">
+                                <span className="font-bold text-pinkStrong">
                                   R${' '}
                                   {(
                                     Number(product.price) * product.quantity
@@ -215,12 +214,12 @@ export default function CartPage() {
               </div>
               <div className="flex justify-between items-center mb-6 text-black">
                 <span className="text-xl font-bold">Total:</span>
-                <span className="text-2xl font-bold text-pink-700">
+                <span className="text-2xl font-bold text-pinkStrong">
                   R${' '}
                   {order.products
                     .reduce(
                       (acc, product) =>
-                        acc + Number(product.price) * product.quantity,
+                        acc + Number(product.price) * Number(product.quantity),
                       0,
                     )
                     .toFixed(2)}
@@ -230,7 +229,7 @@ export default function CartPage() {
               <div className="flex flex-col md:flex-row gap-4">
                 <button
                   onClick={() => (window.location.href = '/')}
-                  className="w-full md:w-auto bg-gray-200 text-gray-800 py-3 px-6 rounded-full hover:bg-gray-300 transition-colors"
+                  className="w-full md:w-auto bg-gray-200 text-gray-800 py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors"
                 >
                   Continuar Comprando
                 </button>
@@ -238,7 +237,7 @@ export default function CartPage() {
                   onClick={() =>
                     alert('Funcionalidade de checkout em desenvolvimento!')
                   }
-                  className="w-full md:w-auto bg-pink-500 text-white py-3 px-6 rounded-full hover:bg-pink-600 transition-colors"
+                  className="w-full md:w-auto bg-pinkStrong text-white py-3 px-6 rounded-lg hover:bg-pinkStrongHover transition-colors"
                 >
                   Finalizar Compra
                 </button>
@@ -246,7 +245,7 @@ export default function CartPage() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }

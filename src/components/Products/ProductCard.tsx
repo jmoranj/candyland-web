@@ -24,7 +24,7 @@ export default function ProductCard({ product }: { product: ProductType }) {
         </div>
         <span className="text-xl max-sm:text-base font-semibold text-pinkStrong">R${Number(product.price).toFixed(2)}</span>
         <button
-          onClick={() => { addItem }}
+          onClick={() => { addItem(product) }}
           className="flex justify-center items-center gap-2 px-10 py-2 bg-pinkStrong text-base max-sm:text-sm text-white font-semibold rounded hover:opacity-65 transition w-max"
         >
           <BagIcon width={20} height={20} />
