@@ -9,7 +9,7 @@ export default function ProductCard({ product }: { product: ProductType }) {
   const { addItem } = useContext(OrderContext)
 
   return (
-    <div className="flex max-w-md max-sm:border-b border-pinkStrong pb-4 mb-4">
+    <div className="flex max-w-md pb-4 mb-4">
       <div className="w-40 h-full max-sm:w-32">
         <img
           src={"./cake.jpg"}

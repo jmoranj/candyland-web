@@ -38,17 +38,17 @@ export default function CartPage() {
 
           <div className="bg-white rounded-xl shadow-lg p-12 text-center">
             <div className="text-8xl mb-6">🛒</div>
-            <h2 className="text-3xl font-bold text-gray-700 mb-4">
+            <h2 className="text-3xl max-sm:text-lg font-bold text-gray-700 mb-4">
               Seu carrinho está vazio
             </h2>
-            <p className="text-gray-500 mb-8 text-lg">
+            <p className="text-gray-500 mb-8 text-lg max-sm:text-sm">
               Adicione alguns doces deliciosos ao seu carrinho!
             </p>
             <button
               onClick={() => (window.location.href = '/')}
-              className="bg-pink-500 text-white px-8 py-4 rounded-full hover:bg-pink-600 transition-all duration-200 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="bg-pinkStrong text-white px-8 py-4 rounded-lg hover:bg-pinkStrongHover transition-all duration-200 text-lg max-sm:text-sm font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              🍰 Continuar Comprando
+              Continuar Comprando
             </button>
           </div>
         </div>
@@ -157,7 +157,7 @@ export default function CartPage() {
                                         e.stopPropagation()
                                         decreaseQuantity(product.id)
                                       }}
-                                      className="text-pink-500"
+                                      className="text-pinkStrong"
                                       title="Diminuir quantidade"
                                     >
                                       −
@@ -170,7 +170,7 @@ export default function CartPage() {
                                         e.stopPropagation()
                                         increaseQuantity(product.id)
                                       }}
-                                      className="text-pink-500 "
+                                      className="text-pinkStrong "
                                       title="Aumentar quantidade"
                                     >
                                       +
@@ -209,8 +209,13 @@ export default function CartPage() {
 
             <div className="border-t pt-6 mt-6">
               <div className="flex justify-between items-center mb-4 text-black">
-                <span className="text-lg font-semibold">Total de itens:</span>
-                <span className="text-lg">{order.products.length}</span>
+                <span className="text-base max-sm:text-sm font-semibold">Total de itens:</span>
+                <span className="text-base max-sm:text-sm">{order.products
+                  .reduce(
+                    (acc, product) =>
+                      acc + Number(product.quantity),
+                    0,
+                  )}</span>
               </div>
               <div className="flex justify-between items-center mb-6 text-black">
                 <span className="text-xl font-bold">Total:</span>
