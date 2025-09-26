@@ -1,4 +1,8 @@
+
 const CandyLogo: React.FC = () => {
+
+
+
   return (
     <img
       src="/logo.png"
