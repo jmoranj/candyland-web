@@ -1,16 +1,12 @@
 'use client';
 
 import api from '@/api/Api';
+import { loginSchema } from '@/schemas/Login';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
-const loginSchema = z.object({
-  email: z.string().email('E-mail inválido'),
-  password: z.string().min(6, 'A senha deve ter no mínimo 6 caracteres'),
-});
 
 type LoginFormData = z.infer<typeof loginSchema>;
 

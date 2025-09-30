@@ -1,6 +1,7 @@
 import QueryProvider from '@/Providers/QueryProvider';
-import OrderProvider from '@/context/OrderContext';
 import { ToastProvider } from "@/components/Ui/ToastProvider";
+import { FilterProvider } from '@/context/FilterContext';
+import OrderProvider from '@/context/OrderContext';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
@@ -29,12 +30,14 @@ export default function RootLayout({
         className={`${luckyBones.variable} antialiased font-sans bg-foreground`}
       >
         <QueryProvider>
-        <ToastProvider />
-          <OrderProvider>
-            <div className="w-screen h-screen flex justify-center">
-              {children}
-            </div>
-          </OrderProvider>
+          <ToastProvider />
+          <FilterProvider>
+            <OrderProvider>
+              <div className="w-screen h-screen flex justify-center">
+                {children}
+              </div>
+            </OrderProvider>
+          </FilterProvider>
         </QueryProvider>
       </body>
     </html>
