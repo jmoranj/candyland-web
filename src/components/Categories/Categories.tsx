@@ -6,7 +6,7 @@ import CategoryTemplate from './CategorieTemplate';
 
 export default function Categories() {
   const { data: categories } = useCategoriesQuery();
-  const { setSelectedCategory, selectedCategory } = useFilter();
+  const { applyCategorie, selectedCategory } = useFilter();
 
   return (
     <div className="w-full flex flex-col gap-6">
@@ -22,7 +22,8 @@ export default function Categories() {
               key={category.categoryName}
               name={category.categoryName}
               icon={category.categoryIcon}
-              onClick={() => setSelectedCategory(category.categoryName)}
+              onClick={() => applyCategorie(category.categoryName)}
+              selected={isSelected}
             />
           );
         })}

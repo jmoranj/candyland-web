@@ -3,9 +3,9 @@ import { createContext, ReactNode, useContext, useState } from 'react';
 
 type FilterContextType = {
   selectedCategory: string | null;
-  setSelectedCategory: (category: string) => void;
   searchText: string;
   setSearchText: (text: string) => void;
+  applyCategorie: (category: string) => void;
 };
 
 
@@ -15,8 +15,16 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchText, setSearchText] = useState<string>(''); // novo estado
 
+  const applyCategorie = (category: string) => {
+    if (category == selectedCategory) {
+      setSelectedCategory(null)
+      return
+    }
+    setSelectedCategory(category)
+  }
+
   return (
-    <FilterContext.Provider value={{ selectedCategory, setSelectedCategory, searchText, setSearchText }}>
+    <FilterContext.Provider value={{ selectedCategory, applyCategorie, searchText, setSearchText }}>
       {children}
     </FilterContext.Provider>
   );

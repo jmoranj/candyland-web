@@ -14,7 +14,7 @@ const CategoryTemplate: React.FC<{
         >
           {icon}
         </div>
-        <span className={`font-semibold text-sm ${selected ? 'text-pink-500' : ''}`}>
+        <span className={`font-semibold text-sm ${selected ? 'text-pink-800' : ''}`}>
           {name}
         </span>
       </figure>
