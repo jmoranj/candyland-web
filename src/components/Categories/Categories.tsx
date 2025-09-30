@@ -1,12 +1,12 @@
 'use client';
 
-import { useCategory } from '@/context/CategoryContext'; // ← certifique-se do path correto
+import { useFilter } from '@/context/FilterContext';
 import { useCategoriesQuery } from '@/services/CategoryService';
 import CategoryTemplate from './CategorieTemplate';
 
 export default function Categories() {
   const { data: categories } = useCategoriesQuery();
-  const { setSelectedCategory, selectedCategory } = useCategory();
+  const { setSelectedCategory, selectedCategory } = useFilter();
 
   return (
     <div className="w-full flex flex-col gap-6">

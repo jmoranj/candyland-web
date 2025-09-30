@@ -1,38 +1,28 @@
 'use client'
 
-import { useCategory } from '@/context/CategoryContext';
+import { useFilter } from '@/context/FilterContext';
 import { useProductsQuery } from '@/services/ProductsService';
 import ProductCard from './ProductCard';
 
 export default function ProductsTable() {
   const { data: fetchedProducts = [] } = useProductsQuery();
-  const { selectedCategory } = useCategory();
-  console.log(fetchedProducts)
+  const { selectedCategory, searchText } = useFilter();
 
-  // Se uma categoria estiver selecionada, filtra diretamente
-  if (selectedCategory) {
-    const filtered = fetchedProducts.filter(
-      (product) => product.category === selectedCategory.toLocaleLowerCase()
-    );
+  // Função de filtro
+  const filteredProducts = fetchedProducts.filter(product => {
+    const matchesCategory = selectedCategory
+      ? product.category?.toLowerCase() === selectedCategory.toLowerCase()
+      : true;
 
-    return (
-      <div className='w-full my-20'>
-        <div className='mb-10 flex flex-col gap-5 sm:border-b-2'>
-          <h2 className='font-candyland 2xl:text-2xl text-xl max-sm:text-lg capitalize'>
-            {selectedCategory}
-          </h2>
-          <div className="flex justify-between gap-6 flex-wrap ">
-            {filtered.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
+    const matchesSearch = product.name
+      .toLowerCase()
+      .includes(searchText.toLowerCase());
 
-  // Caso nenhuma categoria esteja selecionada → renderiza agrupado
-  const groupedByCategory = fetchedProducts.reduce((acc, product) => {
+    return matchesCategory && matchesSearch;
+  });
+
+  // Agrupar se nenhuma categoria estiver selecionada
+  const groupedByCategory = filteredProducts.reduce((acc, product) => {
     const category = product.category || 'Sem categoria';
     if (!acc[category]) {
       acc[category] = [];

@@ -1,6 +1,6 @@
 import QueryProvider from '@/Providers/QueryProvider';
 import { ToastProvider } from "@/components/Ui/ToastProvider";
-import { CategoryProvider } from '@/context/CategoryContext';
+import { FilterProvider } from '@/context/FilterContext';
 import OrderProvider from '@/context/OrderContext';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
@@ -31,13 +31,13 @@ export default function RootLayout({
       >
         <QueryProvider>
           <ToastProvider />
-          <CategoryProvider>
+          <FilterProvider>
             <OrderProvider>
               <div className="w-screen h-screen flex justify-center">
                 {children}
               </div>
             </OrderProvider>
-          </CategoryProvider>
+          </FilterProvider>
         </QueryProvider>
       </body>
     </html>
