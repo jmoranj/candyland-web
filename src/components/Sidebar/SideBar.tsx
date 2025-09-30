@@ -11,7 +11,7 @@ import ProfileIcon from '../icons/sidebar/profileIcon'
 export default function SideBar() {
   const pathname = usePathname()
   const [isSidebarHidden, setIsSidebarHidden] = useState(false)
-  const { order } = useContext(OrderContext)
+  const { getTotalItems } = useContext(OrderContext)
 
   const isActive = (href: string) => pathname === href
 
@@ -20,7 +20,7 @@ export default function SideBar() {
   }
 
   return (
-    <div>
+    <div className="w-full h-full">
       {/* Mobile Toggle Button */}
       <button
         onClick={toggleSidebar}
@@ -29,14 +29,21 @@ export default function SideBar() {
         {isSidebarHidden ? '>' : '<'}
       </button>
 
+      {/* Mobile Overlay */}
+      {!isSidebarHidden && (
+        <div 
+          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-20"
+          onClick={toggleSidebar}
+        />
+      )}
+
       {/* Sidebar */}
       <aside
         className={`
-        fixed top-0 left-0
-        w-64 min-h-screen bg-pink-50 shadow-lg
+        w-full h-full bg-pinkWeak shadow-lg
         transition-transform duration-300 ease-in-out
-        md:translate-x-0
-        z-10
+        md:translate-x-0 md:relative
+        fixed top-0 left-0 z-30
         ${isSidebarHidden ? '-translate-x-full' : 'translate-x-0'}
       `}
       >
@@ -69,10 +76,10 @@ export default function SideBar() {
                   ${isActive('/cart') ? 'bg-pink-200 text-pink-900' : 'text-pink-800 hover:bg-pink-100'}`}
               >
                 <BagIcon />
-                <span>Pedidos</span>
-                {order.products.length > 0 && (
+                <span>Carrinho</span>
+                {getTotalItems() > 0 && (
                   <span className="absolute -top-1 left-8 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                    {order.products.length}
+                    {getTotalItems()}
                   </span>
                 )}
               </Link>

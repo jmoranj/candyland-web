@@ -10,7 +10,7 @@ export default function CartButton() {
   const totalItems = getTotalItems()
 
   return (
-    <figure className="relative bg-pinkStrong w-10 h-full p-2 rounded-xl ml-4 text-white max-sm:w-7 max-sm:p-1.5 max-sm:rounded-lg">
+    <figure className="relative bg-pinkStrong w-10 h-full p-2 rounded-md ml-4 text-white max-sm:w-7 max-sm:p-1.5 max-sm:rounded-lg md:hidden">
       <Link href="/pedidos">
         <CartIcon />
       </Link>

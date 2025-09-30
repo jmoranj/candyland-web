@@ -7,9 +7,9 @@ const Search = () => {
   const { searchText, setSearchText } = useFilter(); // Usa o contexto
 
   return (
-    <div className="relative w-[70%]">
+    <div className="relative w-full">
       <input
-        className="w-full h-10 max-sm:h-7 pl-5 pr-10 rounded-xl max-sm:rounded-lg bg-pinkWeak text-base max-sm:text-sm border-none text-brownText placeholder:text-brownPlaceholder outline-none focus:ring-2 focus:ring-pinkStrong"
+        className="w-full items-center h-10 max-sm:h-7 pl-5 pr-10 rounded-md max-sm:rounded-lg bg-pinkWeak text-base max-sm:text-sm border-none text-brownText placeholder:text-brownPlaceholder outline-none focus:ring-2 focus:ring-pinkStrong"
         type="text"
         placeholder="procurar..."
         value={searchText} // Controlado
