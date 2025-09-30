@@ -12,6 +12,7 @@ export default function CartPage() {
     removeProduct,
     increaseQuantity,
     decreaseQuantity,
+    getTotalPrice,
   } = useContext(OrderContext)
 
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set())
@@ -163,7 +164,7 @@ export default function CartPage() {
                                       −
                                     </button>
 
-                                    <span>{product.quantity == undefined ? product.quantity = 1 : product.quantity}</span>
+                                    <span>{product.quantity}</span>
 
                                     <button
                                       onClick={(e) => {
@@ -183,9 +184,7 @@ export default function CartPage() {
                                 <span className="font-semibold">Subtotal:</span>
                                 <span className="font-bold text-pinkStrong">
                                   R${' '}
-                                  {(
-                                    Number(product.price) * product.quantity
-                                  ).toFixed(2)}
+                                  {getTotalPrice()}
                                 </span>
                               </div>
                             </div>

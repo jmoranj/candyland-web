@@ -8,6 +8,7 @@ interface OrderContextType {
   order: OrderType
   addItem: (item: ProductType) => void
   getTotalItems: () => number
+  getTotalPrice: () => number
   removeProduct: (productId: string) => void
   clearOrder: () => void
   increaseQuantity: (productId: string) => void
@@ -18,46 +19,42 @@ export const OrderContext = createContext<OrderContextType>({
   order: {
     products: [],
   },
-  addItem: () => {
-    //
-  },
+  addItem: () => { },
   getTotalItems: () => 0,
-  removeProduct: () => {
-    //
-  },
-  clearOrder: () => {
-    //
-  },
-  increaseQuantity: () => {
-    //
-  },
-  decreaseQuantity: () => {
-    //
-  },
+  getTotalPrice: () => 0,
+  removeProduct: () => { },
+  clearOrder: () => { },
+  increaseQuantity: () => { },
+  decreaseQuantity: () => { },
 })
 
-export default function OrderProvider({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function OrderProvider({ children }: { children: React.ReactNode }) {
   const [order, setOrder] = useState<OrderType>({
     products: [],
   })
 
+  // Carrega do localStorage ao iniciar
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     const storedOrder = localStorage.getItem('order')
     if (storedOrder) {
-      setOrder(JSON.parse(storedOrder))
+      try {
+        setOrder(JSON.parse(storedOrder))
+      } catch (error) {
+        console.error('Erro ao fazer parse do pedido salvo:', error)
+      }
     }
   }, [])
 
+  // Atualiza localStorage sempre que o pedido mudar
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     try {
       if (order.products.length > 0) {
         localStorage.setItem('order', JSON.stringify(order))
       } else {
-        // Remove do localStorage quando carrinho está vazio
         localStorage.removeItem('order')
       }
     } catch (error) {
@@ -73,20 +70,17 @@ export default function OrderProvider({
 
       if (existingProductIndex === -1) {
         return {
-          products: [...prevOrder.products, product],
+          products: [...prevOrder.products, { ...product, quantity: 1 }],
         }
       }
 
       const updatedProducts = [...prevOrder.products]
-
       updatedProducts[existingProductIndex] = {
         ...updatedProducts[existingProductIndex],
         quantity: updatedProducts[existingProductIndex].quantity + 1,
       }
 
-      return {
-        products: updatedProducts,
-      }
+      return { products: updatedProducts }
     })
   }
 
@@ -103,11 +97,14 @@ export default function OrderProvider({
 
   const decreaseQuantity = (productId: string) => {
     setOrder((prevOrder) => {
-      const updatedProducts = prevOrder.products.map((product) =>
-        product.id === productId && product.quantity > 1
-          ? { ...product, quantity: product.quantity - 1 }
-          : product,
-      )
+      const updatedProducts = prevOrder.products
+        .map((product) =>
+          product.id === productId
+            ? { ...product, quantity: product.quantity - 1 }
+            : product,
+        )
+        .filter((product) => product.quantity > 0)
+
       return { products: updatedProducts }
     })
   }
@@ -119,19 +116,22 @@ export default function OrderProvider({
     )
   }
 
+  const getTotalPrice = () => {
+    return order.products.reduce(
+      (total, product) => total + (Number(product.price) || 0) * product.quantity,
+      0,
+    )
+  }
+
+
   const removeProduct = (productId: string) => {
     setOrder((prevOrder) => ({
-      products: prevOrder.products.filter(
-        (product) => product.id !== productId,
-      ),
+      products: prevOrder.products.filter((product) => product.id !== productId),
     }))
   }
 
   const clearOrder = () => {
-    setOrder({
-      products: [],
-    })
-    // Remove explicitamente do localStorage
+    setOrder({ products: [] })
     try {
       localStorage.removeItem('order')
     } catch (error) {
@@ -145,6 +145,7 @@ export default function OrderProvider({
         order,
         addItem,
         getTotalItems,
+        getTotalPrice,
         removeProduct,
         clearOrder,
         increaseQuantity,
