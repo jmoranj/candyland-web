@@ -1,11 +1,7 @@
-import QueryProvider from '@/Providers/QueryProvider';
-import { ToastProvider } from "@/components/Ui/ToastProvider";
-import { FilterProvider } from '@/context/FilterContext';
-import OrderProvider from '@/context/OrderContext';
+import { ToastProvider } from '@/components/Ui/ToastProvider';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
-import Sidebar from '@/components/Sidebar/SideBar';
 
 const luckyBones = localFont({
   src: './assets/fonts/LuckyBones-Bold.otf',
@@ -30,26 +26,13 @@ export default function RootLayout({
       <body
         className={`${luckyBones.variable} antialiased font-sans bg-foreground`}
       >
-        <QueryProvider>
-          <FilterProvider>
-            <ToastProvider />
-            <OrderProvider>
-              <div className="w-screen h-screen flex flex-col md:flex-row">
-                {/* Sidebar - Hidden on mobile, fixed width on desktop */}
-                <div className='hidden md:flex md:w-64 md:min-w-64 h-full'>
-                  <Sidebar />
-                </div>
+        <ToastProvider />
 
-                {/* Main content area - Full width on mobile, remaining space on desktop */}
-                <div className='flex-1 h-full overflow-auto'>
-                  <div className='w-full h-full px-4 md:px-6'>
-                    {children}
-                  </div>
-                </div>
-              </div>
-            </OrderProvider>
-          </FilterProvider>
-        </QueryProvider>
+        <div className="w-screen h-screen flex flex-col md:flex-row">
+          <div className="flex-1 h-full overflow-auto">
+            <div className="w-full h-full">{children}</div>
+          </div>
+        </div>
       </body>
     </html>
   );
