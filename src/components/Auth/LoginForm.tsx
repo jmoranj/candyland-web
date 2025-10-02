@@ -1,6 +1,6 @@
 'use client';
 
-import api from '@/api/Api';
+import api from '@/Api/Api';
 import { loginSchema } from '@/schemas/Login';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
