@@ -10,14 +10,15 @@ export default function LoginPage() {
 
   return (
     <div className="w-screen h-screen flex relative">
-      <div className="flex-1 flex items-center justify-center bg-white relative">
-        <button
-          onClick={() => router.push('/')}
-          className="absolute top-16 left-16 flex items-center gap-2 bg-[var(--pinkStrong)] text-white font-extrabold px-6 py-2 rounded-md hover:bg-[var(--pinkStrongHover)] transition z-20"
-        >
-          <FiArrowLeft className="w-5 h-5" />
-          Voltar
-        </button>
+      <button
+        onClick={() => router.push('/')}
+        className="absolute top-6 left-6 flex items-center gap-2 bg-[var(--pinkStrong)] text-white font-extrabold px-6 py-2 rounded-md hover:bg-[var(--pinkStrongHover)] transition z-20"
+      >
+        <FiArrowLeft className="w-5 h-5" />
+        Voltar
+      </button>
+
+      <div className="flex-1 items-center justify-center bg-white relative hidden md:flex min-w-[400px] min-h-[800px]">
         <div className="flex items-center justify-center w-full h-full">
           <CandyLogo sizeClasses="w-[512px] h-[512px]" />
         </div>
@@ -27,8 +28,9 @@ export default function LoginPage() {
           className="absolute top-0 -right-24 h-full w-40"
         />
       </div>
-      <div className="flex-1 flex items-center justify-center bg-[var(--background-pink)] relative z-0">
-        <div className="p-8 rounded-lg w-[31.25rem]">
+
+      <div className="flex-1 flex items-center justify-center bg-[var(--background-pink)] relative z-0 w-full">
+        <div className="bg-white p-8 rounded-lg w-[70%] max-w-md lg:bg-transparent lg:w-[31.25rem]">
           <h1 className="text-2xl font-bold text-center text-[var(--brown-text)] mb-8">
             Área do Administrador
           </h1>

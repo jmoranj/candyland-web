@@ -43,10 +43,7 @@ export function LoginForm() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6 w-full"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 w-full">
       <input
         type="email"
         placeholder="id do adm"
@@ -54,7 +51,9 @@ export function LoginForm() {
         className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--pinkStrong)] text-neutral-900"
       />
       {errors.email && (
-        <p className="text-red-500 text-base font-semibold mt-1">{errors.email.message}</p>
+        <p className="text-red-500 text-base font-semibold mt-1">
+          {errors.email.message}
+        </p>
       )}
 
       <input
@@ -67,9 +66,7 @@ export function LoginForm() {
         <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
       )}
 
-      {serverError && (
-        <p className="text-red-600 text-sm">{serverError}</p>
-      )}
+      {serverError && <p className="text-red-600 text-sm">{serverError}</p>}
       {successMessage && (
         <p className="text-green-600 text-sm">{successMessage}</p>
       )}
@@ -77,8 +74,7 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className={`w-[15.625rem] mx-auto block bg-[var(--pinkStrong)] text-white font-extrabold text-xl py-3  rounded-md hover:bg-[var(--pinkStrongHover)] transition ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-          }`}
+        className={`w-full sm:w-[15.625rem] mx-auto block bg-[var(--pinkStrong)] text-white font-extrabold text-base sm:text-xl py-3 rounded-md hover:bg-[var(--pinkStrongHover)] transition ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
       >
         {isSubmitting ? (
           <span className="animate-pulse">Carregando...</span>
