@@ -30,8 +30,6 @@ export function LoginForm() {
 
     try {
       const response = await api.post('auth/login', data);
-      console.log('Resposta da API:', response.data);
-
       localStorage.setItem('token', response.data.token);
       setSuccessMessage('Login realizado com sucesso!');
       router.push('/dashboard');
@@ -47,53 +45,46 @@ export function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white shadow-md rounded px-8 pt-6 pb-8 w-full max-w-sm"
+      className="space-y-6 w-full"
     >
-      <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          E-mail
-        </label>
-        <input
-          type="email"
-          {...register('email')}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none"
-        />
-        {errors.email && (
-          <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
-        )}
-      </div>
-
-      <div className="mb-6">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
-          Senha
-        </label>
-        <input
-          type="password"
-          {...register('password')}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none"
-        />
-        {errors.password && (
-          <p className="text-red-500 text-xs mt-1">
-            {errors.password.message}
-          </p>
-        )}
-      </div>
-
-      {serverError && (
-        <p className="text-red-600 text-sm mb-4">{serverError}</p>
+      <input
+        type="email"
+        placeholder="id do adm"
+        {...register('email')}
+        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--pinkStrong)] text-neutral-900"
+      />
+      {errors.email && (
+        <p className="text-red-500 text-base font-semibold mt-1">{errors.email.message}</p>
       )}
 
+      <input
+        type="password"
+        placeholder="senha"
+        {...register('password')}
+        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--pinkStrong)] text-neutral-900"
+      />
+      {errors.password && (
+        <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
+      )}
+
+      {serverError && (
+        <p className="text-red-600 text-sm">{serverError}</p>
+      )}
       {successMessage && (
-        <p className="text-green-600 text-sm mb-4">{successMessage}</p>
+        <p className="text-green-600 text-sm">{successMessage}</p>
       )}
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+        className={`w-[15.625rem] mx-auto block bg-[var(--pinkStrong)] text-white font-extrabold text-xl py-3  rounded-md hover:bg-[var(--pinkStrongHover)] transition ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
           }`}
       >
-        {isSubmitting ? 'Entrando...' : 'Entrar'}
+        {isSubmitting ? (
+          <span className="animate-pulse">Carregando...</span>
+        ) : (
+          'Entrar'
+        )}
       </button>
     </form>
   );
