@@ -29,8 +29,7 @@ export function LoginForm() {
     setSuccessMessage('');
 
     try {
-      const response = await api.post('auth/login', data);
-      localStorage.setItem('token', response.data.token);
+      await api.post('auth/login', data);
       setSuccessMessage('Login realizado com sucesso!');
       router.push('/dashboard');
     } catch (error: any) {
@@ -63,12 +62,12 @@ export function LoginForm() {
         className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--pinkStrong)] text-neutral-900"
       />
       {errors.password && (
-        <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
+        <p className="text-red-500 text-base font-semibold mt-1">{errors.password.message}</p>
       )}
 
-      {serverError && <p className="text-red-600 text-sm">{serverError}</p>}
+      {serverError && <p className="text-red-500 text-base font-semibold mt-1">{serverError}</p>}
       {successMessage && (
-        <p className="text-green-600 text-sm">{successMessage}</p>
+        <p className="text-green-600 text-base font-semibold mt-1">{successMessage}</p>
       )}
 
       <button
