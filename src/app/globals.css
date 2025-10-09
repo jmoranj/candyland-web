@@ -14,7 +14,9 @@
     --brownText: #694009;
     --brownPlaceholder: #69400970;
     --pinkWeak: #ff617b25;
-    --background-pink: #FDD5DF;
+    --background-pink: #fdd5df;
+    --adminBackground: #f0f1f5;
+    --textOff: #8c8c8c;
   }
 }
 
@@ -25,7 +27,7 @@ body {
 }
 
 @media (max-width: 800px) {
-    /* classes customizadas para esconder scrollbar */
+  /* classes customizadas para esconder scrollbar */
   .scrollbarNone {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE e Edge antigos */
@@ -33,6 +35,5 @@ body {
 
   .scrollbarNone::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Edge */
-  } 
+  }
 }
-
