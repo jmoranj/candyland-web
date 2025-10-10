@@ -1,23 +1,28 @@
 'use client';
 
-import { useFilter } from '@/context/FilterContext'; // Importa o hook
+import { useQueryState } from 'nuqs';
 import { FiSearch } from 'react-icons/fi';
 
-const Search = () => {
-  const { searchText, setSearchText } = useFilter(); // Usa o contexto
+interface SearchProps {
+  searchInput: string;
+  setSearchInput: (value: string) => void;
+}
+
+export default function Search({ searchInput, setSearchInput }: SearchProps) {
 
   return (
     <div className="relative w-full">
       <input
-        className="w-full items-center h-10 max-sm:h-7 pl-5 pr-10 rounded-md max-sm:rounded-lg bg-pinkWeak text-base max-sm:text-sm border-none text-brownText placeholder:text-brownPlaceholder outline-none focus:ring-2 focus:ring-pinkStrong"
+        className="w-full items-center h-10 max-sm:h-7 pl-10 pr-10 rounded-md max-sm:rounded-lg ring-1 ring-gray-300 
+        bg-white text-base max-sm:text-sm text-brownText placeholder:text-brownPlaceholder outline-none focus:ring-2 focus:ring-pinkStrong"
+
         type="text"
-        placeholder="procurar..."
-        value={searchText} // Controlado
-        onChange={(e) => setSearchText(e.target.value)} // Atualiza contexto
+        placeholder="Procurar"
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
       />
-      <FiSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-brownPlaceholder pointer-events-none text-base max-sm:text-sm" />
+      <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-brownPlaceholder pointer-events-none text-base max-sm:text-sm" />
     </div>
   );
 };
 
-export default Search;

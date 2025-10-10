@@ -1,10 +1,8 @@
-import QueryProvider from '@/Providers/QueryProvider';
 import { ToastProvider } from '@/components/Ui/ToastProvider';
-import { FilterProvider } from '@/context/FilterContext';
-import OrderProvider from '@/context/OrderContext';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import Sidebar from '@/components/Sidebar/SideBar';
+import AdminSideBar from '@/components/Sidebar/AdminSideBar';
+import { FilterProvider } from '@/context/FilterContext';
 
 const luckyBones = localFont({
   src: '../assets/fonts/LuckyBones-Bold.otf',
@@ -25,21 +23,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <FilterProvider>
-      <ToastProvider />
-      <OrderProvider>
+    <div>
+        <ToastProvider />
         <div className="w-screen h-screen flex flex-col md:flex-row">
-          {/* Sidebar - Hidden on mobile, fixed width on desktop */}
           <div className="hidden md:flex md:w-64 md:min-w-64 h-full">
-            <Sidebar />
+            <AdminSideBar />
           </div>
-
-          {/* Main content area - Full width on mobile, remaining space on desktop */}
           <div className="flex-1 h-full overflow-auto">
-            <div className="w-full h-full px-4 md:px-6">{children}</div>
+            <div className="w-full h-full px-4 md:px-6  bg-[var(--adminBackground)]">
+              {children}
+            </div>
           </div>
         </div>
-      </OrderProvider>
-    </FilterProvider>
+    </div>
   );
 }

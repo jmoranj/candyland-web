@@ -31,7 +31,7 @@ export function LoginForm() {
     try {
       await api.post('auth/login', data);
       setSuccessMessage('Login realizado com sucesso!');
-      router.push('/dashboard');
+      router.push('/admin/dashboard');
     } catch (error: any) {
       if (error.response?.data?.message) {
         setServerError(error.response.data.message);

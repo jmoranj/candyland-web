@@ -12,7 +12,7 @@ export default function ProductCard({ product }: { product: ProductType }) {
     <div className="flex max-w-md pb-4 mb-4">
       <div className="w-40 h-full max-sm:w-32">
         <img
-          src={"./cake.jpg"}
+          src="/cake.jpg"
           alt={product.name}
           className="w-full h-full object-cover"
         />

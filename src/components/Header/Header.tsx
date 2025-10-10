@@ -1,13 +1,18 @@
-import CartButton from '../Buttons/CartBtn';
-import CandyLogo from '../icons/CandyLogo';
+'use client'
+
+import { parseAsString, useQueryState } from 'nuqs';
 import Search from './Search';
 
 export default function Header() {
+
+  const [searchInput, setSearchInput] = useQueryState('searchInput', {
+    ...parseAsString,
+    defaultValue: ''
+  });
+
   return (
     <div className="w-full h-max flex justify-between items-center">
-      <CandyLogo />
-      <Search />
-      <CartButton />
+      <Search searchInput={searchInput} setSearchInput={setSearchInput} />
     </div>
   );
 }

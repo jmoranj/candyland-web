@@ -1,5 +1,7 @@
 import { ToastProvider } from '@/components/Ui/ToastProvider';
 import type { Metadata } from 'next';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
+import QueryProvider from '@/Providers/QueryProvider';
 import localFont from 'next/font/local';
 import './globals.css';
 
@@ -13,7 +15,7 @@ const luckyBones = localFont({
 
 export const metadata: Metadata = {
   title: 'Candyland',
-  description: 'Thought and coded by sons of @jmoranj',
+  description: 'Thought and coded by @eduard0vieira e pau',
 };
 
 export default function RootLayout({
@@ -26,13 +28,16 @@ export default function RootLayout({
       <body
         className={`${luckyBones.variable} antialiased font-sans bg-foreground`}
       >
-        <ToastProvider />
-
-        <div className="w-screen h-screen flex flex-col md:flex-row">
-          <div className="flex-1 h-full overflow-auto">
-            <div className="w-full h-full">{children}</div>
-          </div>
-        </div>
+        <QueryProvider>
+          <NuqsAdapter>
+            <ToastProvider />
+            <div className="w-screen h-screen flex flex-col md:flex-row">
+              <div className="flex-1 h-full overflow-auto">
+                <div className="w-full h-full">{children}</div>
+              </div>
+            </div>
+          </NuqsAdapter>
+        </QueryProvider>
       </body>
     </html>
   );
