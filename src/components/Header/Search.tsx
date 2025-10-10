@@ -1,10 +1,14 @@
 'use client';
 
-import { useFilter } from '@/context/FilterContext'; // Importa o hook
+import { useQueryState } from 'nuqs';
 import { FiSearch } from 'react-icons/fi';
 
-const Search = () => {
-  const { searchText, setSearchText } = useFilter(); // Usa o contexto
+interface SearchProps {
+  searchInput: string;
+  setSearchInput: (value: string) => void;
+}
+
+export default function Search({ searchInput, setSearchInput }: SearchProps) {
 
   return (
     <div className="relative w-full">
@@ -14,12 +18,11 @@ const Search = () => {
 
         type="text"
         placeholder="Procurar"
-        value={searchText} // Controlado
-        onChange={(e) => setSearchText(e.target.value)} // Atualiza contexto
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
       />
       <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-brownPlaceholder pointer-events-none text-base max-sm:text-sm" />
     </div>
   );
 };
 
-export default Search;

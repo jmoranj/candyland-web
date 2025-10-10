@@ -2,11 +2,16 @@
 
 import { useFilter } from '@/context/FilterContext';
 import { useProductsQuery } from '@/services/ProductsService';
+import { parseAsString, useQueryState } from 'nuqs';
 import ProductCard from './ProductCard';
 
 export default function ProductsTable() {
   const { data: fetchedProducts = [] } = useProductsQuery();
-  const { selectedCategory, searchText } = useFilter();
+  const { selectedCategory } = useFilter();
+  const [searchText] = useQueryState('searchInput', {
+    ...parseAsString,
+    defaultValue: ''
+  });
 
   // Função de filtro
   const filteredProducts = fetchedProducts.filter(product => {
@@ -16,7 +21,7 @@ export default function ProductsTable() {
 
     const matchesSearch = product.name
       .toLowerCase()
-      .includes(searchText.toLowerCase());
+      .includes((searchText || '').toLowerCase());
 
     return matchesCategory && matchesSearch;
   });
