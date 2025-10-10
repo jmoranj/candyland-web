@@ -9,13 +9,15 @@ const Search = () => {
   return (
     <div className="relative w-full">
       <input
-        className="w-full items-center h-10 max-sm:h-7 pl-5 pr-10 rounded-md max-sm:rounded-lg bg-pinkWeak text-base max-sm:text-sm border-none text-brownText placeholder:text-brownPlaceholder outline-none focus:ring-2 focus:ring-pinkStrong"
+        className="w-full items-center h-10 max-sm:h-7 pl-10 pr-10 rounded-md max-sm:rounded-lg ring-1 ring-gray-300 
+        bg-white text-base max-sm:text-sm text-brownText placeholder:text-brownPlaceholder outline-none focus:ring-2 focus:ring-pinkStrong"
+
         type="text"
-        placeholder="procurar..."
+        placeholder="Procurar"
         value={searchText} // Controlado
         onChange={(e) => setSearchText(e.target.value)} // Atualiza contexto
       />
-      <FiSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-brownPlaceholder pointer-events-none text-base max-sm:text-sm" />
+      <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-brownPlaceholder pointer-events-none text-base max-sm:text-sm" />
     </div>
   );
 };
