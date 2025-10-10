@@ -15,7 +15,7 @@ const luckyBones = localFont({
 
 export const metadata: Metadata = {
   title: 'Candyland',
-  description: 'Thought and coded by sons of @jmoranj',
+  description: 'Thought and coded by @eduard0vieira e pau',
 };
 
 export default function RootLayout({
