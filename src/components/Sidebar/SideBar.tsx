@@ -86,9 +86,9 @@ export default function SideBar() {
             </li>
             <li>
               <Link
-                href="/contact"
+                href="/contato"
                 className={`font-candyland font-candyland-bold rounded flex items-center px-4 py-4 gap-2 text-pink-800 hover:bg-pink-100 transition-colors
-                  ${isActive('/contact') ? 'bg-pink-200 text-pink-900' : 'text-pink-800 hover:bg-pink-100'}`}
+                  ${isActive('/contato') ? 'bg-pink-200 text-pink-900' : 'text-pink-800 hover:bg-pink-100'}`}
               >
                 <ProfileIcon />
                 <span>Contato</span>

@@ -9,16 +9,16 @@ const publicRoutes = [
     whenAuthenticated: "next"
   },
   {
-    pattern: /^\/login$/,
+    pattern: /^\/login\/?$/,
     whenAuthenticated: "redirect"
   },
   {
-    pattern: /^\/pedidos$/,
-    whenAuthenticated: "redirect"
+    pattern: /^\/pedidos\/?$/,
+    whenAuthenticated: "next"
   },
   {
-    pattern: /^\/contato$/,
-    whenAuthenticated: "redirect"
+    pattern: /^\/contato\/?$/,
+    whenAuthenticated: "next"
   },
 ] as const;
 
@@ -38,6 +38,8 @@ export function middleware(request: NextRequest) {
   const privateRoute = privateRoutes.find((route) => route.pattern.test(pathname));
   const authToken = request.cookies.get(AUTH_COOKIE_NAME);
 
+  console.log('Middleware:', { pathname, isPublic: !!publicRoute, isPrivate: !!privateRoute, hasAuth: !!authToken });
+
   // Não autenticado e rota pública
   if (!authToken && publicRoute) {
     return NextResponse.next();
@@ -47,6 +49,7 @@ export function middleware(request: NextRequest) {
   if (!authToken && !publicRoute) {
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = REDIRECT_WHEN_NOT_AUTHENTICATED;
+    console.log('Redirecting to login:', pathname);
     return NextResponse.redirect(redirectUrl);
   }
 
