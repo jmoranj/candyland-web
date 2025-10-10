@@ -1,10 +1,8 @@
-// middleware.ts
 import { NextRequest, NextResponse } from "next/server";
 import { jwtDecode } from "jwt-decode";
 
-const AUTH_COOKIE_NAME = "authToken";
+const AUTH_COOKIE_NAME = "access_token";
 
-// Use regex para rotas dinâmicas
 const publicRoutes = [
   {
     pattern: /^\/$/,
