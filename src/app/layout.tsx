@@ -1,5 +1,6 @@
 import { ToastProvider } from '@/components/Ui/ToastProvider';
 import type { Metadata } from 'next';
+import QueryProvider from '@/Providers/QueryProvider';
 import localFont from 'next/font/local';
 import './globals.css';
 
@@ -26,13 +27,14 @@ export default function RootLayout({
       <body
         className={`${luckyBones.variable} antialiased font-sans bg-foreground`}
       >
-        <ToastProvider />
-
-        <div className="w-screen h-screen flex flex-col md:flex-row">
-          <div className="flex-1 h-full overflow-auto">
-            <div className="w-full h-full">{children}</div>
+        <QueryProvider>
+          <ToastProvider />
+          <div className="w-screen h-screen flex flex-col md:flex-row">
+            <div className="flex-1 h-full overflow-auto">
+              <div className="w-full h-full">{children}</div>
+            </div>
           </div>
-        </div>
+        </QueryProvider>
       </body>
     </html>
   );
